@@ -58,7 +58,7 @@ class Suggest(commands.Cog):
                     suggestions = await self.coll.find_one({"_id": "suggestions"}) or {}
                     next_id = suggestions.get("next_id", 1)
 
-                    embed = discord.Embed(color=0x59E9FF)
+                    embed = discord.Embed(color=f8ba00)
                     embed.set_author(name=f"Suggestion #{next_id}: Waiting")
                     embed.set_thumbnail(url=ctx.author.avatar.url)
                     embed.add_field(
