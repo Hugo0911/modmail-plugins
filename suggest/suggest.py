@@ -68,7 +68,6 @@ class Suggest(commands.Cog):
                     )
                     embed.add_field(name="Suggestion", value=suggestion, inline=False)
                     message = await suggestion_channel.send(embed=embed)
-                    
                     embed = discord.Embed(
                     content=f"<@!{ctx.author.id}>",
                     title="🎉 Success", color=self.bot.main_color
