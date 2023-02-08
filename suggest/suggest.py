@@ -68,6 +68,12 @@ class Suggest(commands.Cog):
                     )
                     embed.add_field(name="Suggestion", value=suggestion, inline=False)
                     message = await suggestion_channel.send(embed=embed)
+                    embed = discord.Embed(
+                        title="hi im pro", color=self.bot.error_color
+                    )
+                    embed.set_author(name="Error.")
+                    embed.set_footer(text="Task failed successfully.")
+                    await ctx.send(embed=embed)
                     await self.coll.find_one_and_update(
                         {"_id": "suggestions"},
                         {
