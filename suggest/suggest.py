@@ -69,7 +69,7 @@ class Suggest(commands.Cog):
                     embed.add_field(name="Suggestion", value=suggestion, inline=False)
                     message = await suggestion_channel.send(embed=embed)
                     embed = discord.Embed(
-                        content=f"<@!{ctx.author.id}>"
+                        content=f"<@!{ctx.author.id}>",
                         title="hi im pro", color=self.bot.error_color
                     )
                     embed.set_author(name="Error.")
