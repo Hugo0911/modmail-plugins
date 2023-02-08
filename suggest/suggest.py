@@ -85,12 +85,7 @@ class Suggest(commands.Cog):
                                 discord.utils.get(message.guild.emojis, id=r)
                             )
                             await asyncio.sleep(0.1)
-                    await ctx.send(
-                embed=discord.Embed(
-                    color=self.bot.main_color,
-                    title=f"Success, {ctx.author.name}#{ctx.author.discriminator}.",
-                    description=f"Your suggestion has been posted!",
-                )
+                                        await ctx.message.add_reaction("\N{WHITE HEAVY CHECK MARK}")
         else:
             await ctx.send(
                 embed=discord.Embed(
