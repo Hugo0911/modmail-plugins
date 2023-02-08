@@ -57,10 +57,16 @@ class Suggest(commands.Cog):
                     )
                     suggestions = await self.coll.find_one({"_id": "suggestions"}) or {}
                     next_id = suggestions.get("next_id", 1)
+                    
                     embed=discord.Embed(title="🌴 Pending Suggestion", description=suggestion, color=self.bot.main_color)
                    
                     embed.set_footer(text="Suggested by Hugo#0001 · -suggest",icon_url=ctx.author.avatar.url)
                     message = await suggestion_channel.send(embed=embed)
+                    embed = discord.Embed(
+                        title="🎉 Success", description="Your suggestion has been posted in <#807814098372788284>!", color=self.bot.main_color
+                    )
+                    embed.set_footer(text="West Hotels & Resorts",icon_url="https://media.discordapp.net/attachments/1017647493967790107/1024875779248631818/Logo_yellow.png?width=1888&height=1062")
+                    await ctx.send(embed=embed)
                     await self.coll.find_one_and_update(
                         {"_id": "suggestions"},
                         {
@@ -78,7 +84,7 @@ class Suggest(commands.Cog):
                                 discord.utils.get(message.guild.emojis, id=r)
                             )
                             await asyncio.sleep(0.1)
-                            await ctx.message.add_reaction("\N{WHITE HEAVY CHECK MARK}")
+                    await ctx.message.add_reaction("\N{WHITE HEAVY CHECK MARK}")
         else:
             await ctx.send(
                 embed=discord.Embed(
