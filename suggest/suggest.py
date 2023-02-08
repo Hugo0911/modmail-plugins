@@ -70,8 +70,7 @@ class Suggest(commands.Cog):
                     message = await suggestion_channel.send(embed=embed)
                     
                     embed = discord.Embed(
-                        content="<@!{ctx.author.id}>"
-                        title="🎉 Success", color=self.bot.main_color
+                        content="<@!{ctx.author.id}>",title="🎉 Success", color=self.bot.main_color
                     )
                     embed.set_author(name="Error.")
                     embed.set_footer(text="Task failed successfully.")
