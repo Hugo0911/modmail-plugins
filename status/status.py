@@ -1,17 +1,25 @@
-@tasks.loop(seconds=40)  # How often the bot should change status, mine is set on every 40 seconds
-async def changepresence():
-    global x
+import discord
+from discord.ext import commands
+from discord.ext import tasks
 
-    game = iter(
-        [
-            "Status 1",
-            "Status 2",
-            "Status 3",
-            "Status 4",
-            "Status 5?",
-            "Status 6",
-        ]
-    )  # Every line above ^^ is one new status the bot can have
-    for x in range(random.randint(1, 6)):  # Here you write the total of different status you have for the bot, I have 6 and that's why I have number 6 there. This makes it a 16.666% chance to change status every 40 second
-        x = next(game)
-    await bot.change_presence(activity=discord.Game(name=x))
+bot = commands.Bot('.')
+
+@tasks.loop(seconds=30)
+async def switch_presence():
+    # list of all activities to switch between
+    activities = [
+        discord.Activity(type=discord.ActivityType.listening, name='First activity'),
+        discord.Activity(type=discord.ActivityType.listening, name='Another activity')
+    ]
+    curr_activity = bot.activity
+    # default to the first activity if not set or invalid
+    if curr_activity not in activities:
+        await bot.change_presence(activity=activities[0])
+        return
+    # use modulo to start from the beginning once the list is exhausted
+    next_activity_index = (activities.index(curr_activity) + 1) % len(activities)
+    await bot.change_presence(activity=activities[next_activity_index])
+
+@bot.event
+async def on_ready():
+    switch_presence.start()
