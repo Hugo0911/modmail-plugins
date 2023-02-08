@@ -78,8 +78,6 @@ class Suggest(commands.Cog):
                         },
                         upsert=True,
                     )
-                    embed=discord.Embed(title=Success, description=Your suggestion was posted!, color=self.bot.main_color)
-                            await ctx.send(embed=embed)
                     re = config.get("reaction-emojis")
                     if re:
                         for r in re.get("emojis", []):
