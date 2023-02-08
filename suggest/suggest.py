@@ -57,19 +57,12 @@ class Suggest(commands.Cog):
                     )
                     suggestions = await self.coll.find_one({"_id": "suggestions"}) or {}
                     next_id = suggestions.get("next_id", 1)
-
-                    embed = discord.Embed(color=self.bot.main_color)
-                    embed.set_author(name=f"Suggestion #{next_id}: Waiting")
-                    embed.set_thumbnail(url=ctx.author.avatar.url)
-                    embed.add_field(
-                        name="Author",
-                        value=f"{ctx.author.mention} (ID: {ctx.author.id})",
-                        inline=False,
-                    )
-                    embed.add_field(name="Suggestion", value=suggestion, inline=False)
+                    embed=discord.Embed(title="🌴 Pending Suggestion", description="The suggestion here")
+                    embed.add_field(name="undefined", value="undefined", inline=False)
+                    embed.set_footer(text="Suggested by Hugo#0001 · -suggest",icon_url=ctx.author.avatar.url)
                     message = await suggestion_channel.send(embed=embed)
                     embed = discord.Embed(
-                        title="🎉 Success", description="Your suggestion has been posted in <#807814098372788284>", color=self.bot.main_color
+                        title="🎉 Success", description="Your suggestion has been posted in <#807814098372788284>!", color=self.bot.main_color
                     )
                     embed.set_footer(text="West Hotels & Resorts",icon_url="https://media.discordapp.net/attachments/1017647493967790107/1024875779248631818/Logo_yellow.png?width=1888&height=1062")
                     await ctx.send(embed=embed)
