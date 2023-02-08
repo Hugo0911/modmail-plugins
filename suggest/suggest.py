@@ -38,8 +38,8 @@ class Suggest(commands.Cog):
         """
         Suggest something!
 
-        **Usage**:
-        [p]suggest more plugins!
+        **Example**:
+        -suggest Add more islands with activities on them. 🏝️
         """
         if str(ctx.author.id) not in self.banlist:
             async with ctx.channel.typing():
