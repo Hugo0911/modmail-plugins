@@ -57,8 +57,8 @@ class Suggest(commands.Cog):
                     )
                     suggestions = await self.coll.find_one({"_id": "suggestions"}) or {}
                     next_id = suggestions.get("next_id", 1)
-                    embed=discord.Embed(title="🌴 Pending Suggestion", description="The suggestion here")
-                    embed.add_field(name="undefined", value="undefined", inline=False)
+                    embed=discord.Embed(title="🌴 Pending Suggestion", description=suggestion, color=self.bot.main_color)
+                   
                     embed.set_footer(text="Suggested by Hugo#0001 · -suggest",icon_url=ctx.author.avatar.url)
                     message = await suggestion_channel.send(embed=embed)
                     embed = discord.Embed(
