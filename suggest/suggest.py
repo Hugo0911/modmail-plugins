@@ -91,6 +91,7 @@ class Suggest(commands.Cog):
                     color=self.bot.main_color,
                     title=f"Success, {ctx.author.name}#{ctx.author.discriminator}.",
                     description=f"Your suggestion has been posted!",
+                )
         else:
             await ctx.send(
                 embed=discord.Embed(
