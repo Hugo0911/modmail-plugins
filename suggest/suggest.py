@@ -86,6 +86,11 @@ class Suggest(commands.Cog):
                             )
                             await asyncio.sleep(0.1)
                     await ctx.message.add_reaction("\N{WHITE HEAVY CHECK MARK}")
+                    await ctx.send(
+                embed=discord.Embed(
+                    color=self.bot.main_color,
+                    title=f"Success, {ctx.author.name}#{ctx.author.discriminator}.",
+                    description=f"Your suggestion has been posted!",
         else:
             await ctx.send(
                 embed=discord.Embed(
