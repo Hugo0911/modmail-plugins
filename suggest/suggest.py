@@ -85,7 +85,7 @@ class Suggest(commands.Cog):
                                 discord.utils.get(message.guild.emojis, id=r)
                             )
                             await asyncio.sleep(0.1)
-                                        await ctx.message.add_reaction("\N{WHITE HEAVY CHECK MARK}")
+                            await ctx.message.add_reaction("\N{WHITE HEAVY CHECK MARK}")
         else:
             await ctx.send(
                 embed=discord.Embed(
