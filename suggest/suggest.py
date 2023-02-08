@@ -69,10 +69,9 @@ class Suggest(commands.Cog):
                     embed.add_field(name="Suggestion", value=suggestion, inline=False)
                     message = await suggestion_channel.send(embed=embed)
                     embed = discord.Embed(
-                        title="hi im pro", color=self.bot.error_color
+                        title="🎉 Success", description="Your suggestion has been posted in <#807814098372788284>", color=self.bot.main_color
                     )
-                    embed.set_author(name="Error.")
-                    embed.set_footer(text="Task failed successfully.")
+                    embed.set_footer(text="West Hotels & Resorts",icon_url="https://media.discordapp.net/attachments/1017647493967790107/1024875779248631818/Logo_yellow.png?width=1888&height=1062")
                     await ctx.send(embed=embed)
                     await self.coll.find_one_and_update(
                         {"_id": "suggestions"},
