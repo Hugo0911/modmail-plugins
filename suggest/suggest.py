@@ -60,7 +60,7 @@ class Suggest(commands.Cog):
                     
                     embed=discord.Embed(title="🌴 Pending Suggestion", description=suggestion, color=self.bot.main_color)
                    
-                    embed.set_footer(text=f"Suggested by {ctx.author.name}#{ctx.author.discriminator}  |  Suggestion #{next_id}"  |  -suggest",icon_url=ctx.author.avatar.url)
+                    embed.set_footer(text=f"Suggested by {ctx.author.name}#{ctx.author.discriminator}  |  Suggestion #{next_id}  |  -suggest",icon_url=ctx.author.avatar.url)
                     message = await suggestion_channel.send(embed=embed)
                     embed = discord.Embed(
                         title="🎉 Success", description="Your suggestion has been posted in <#807814098372788284>!", color=self.bot.main_color
