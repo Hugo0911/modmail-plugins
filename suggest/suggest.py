@@ -130,7 +130,7 @@ class Suggest(commands.Cog):
             )
             return await ctx.send(embed=embed)
         embed = s_message.embeds[0]
-        title ="🥥 Denied Suggestion"
+        title ="🏝️ Approved Suggestion"
         fields = len(embed.fields)
         embed.color = discord.Colour.green()
         if fields > 2:
@@ -289,8 +289,8 @@ class Suggest(commands.Cog):
         Block a user from using the suggest command.
 
         **Examples:**
-        [p]suggestmod block @RealCyGuy for abuse!
-        [p]suggestmod ban 543225108135673877 `cause he's the same person!!!
+        -suggestmod block @Hugo keep suggestion OJ!
+        -suggestmod ban 543225108135673877 His alt!
         """
         if str(user.id) in self.banlist:
             embed = discord.Embed(
