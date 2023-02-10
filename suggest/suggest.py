@@ -101,8 +101,8 @@ class Suggest(commands.Cog):
         Approve an suggestion.
 
         **Usage**:
-        [p]approve 5 That's a good idea and will be implemented soon (trademarked).
-        [p]approve 456 I agree.
+        -approve 5 That's a good idea and will be implemented soon.
+        -approve 456 Nice suggestion, we will definitively add that to the resort.
         """
         await ctx.message.delete()
         suggestions = await self.coll.find_one({"_id": "suggestions"})
@@ -130,9 +130,9 @@ class Suggest(commands.Cog):
             )
             return await ctx.send(embed=embed)
         embed = s_message.embeds[0]
+        title ="🥥 Denied Suggestion"
         fields = len(embed.fields)
         embed.color = discord.Colour.green()
-        embed.set_author(name=f"Suggestion #{suggestion_id}: Approved")
         if fields > 2:
             embed.remove_field(2)
         if fields == 4:
@@ -163,8 +163,8 @@ class Suggest(commands.Cog):
         Deny an suggestion.
 
         **Usage**:
-        [p]deny 27 That wouldn't work due to the way the thing in the works in contrast with the other thing.
-        [p]deny 78 You're stupid.
+        -deny 27 The idea will not be implanted in our resort since it's bad.
+        -deny 78 Do not troll within our suggestion channel.
         """
         await ctx.message.delete()
         suggestions = await self.coll.find_one({"_id": "suggestions"})
@@ -192,9 +192,9 @@ class Suggest(commands.Cog):
             )
             return await ctx.send(embed=embed)
         embed = s_message.embeds[0]
+        title ="🥥 Denied Suggestion"
         fields = len(embed.fields)
         embed.color = discord.Colour.red()
-        embed.set_author(name=f"Suggestion #{suggestion_id}: Denied")
         if fields > 2:
             embed.remove_field(2)
         if fields == 4:
