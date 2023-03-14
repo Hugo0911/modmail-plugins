@@ -1,25 +1,30 @@
 import discord
-from discord.ext import commands
-from discord.ext import tasks
+from discord.ext import commands, tasks
 
-bot = commands.Bot('.')
+class StatusCog(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.statuses = ['Playing with Python', 'Learning new tricks', 'Helping out in servers']
+        self.status_task.start()
 
-@tasks.loop(seconds=30)
-async def switch_presence():
-    # list of all activities to switch between
-    activities = [
-        discord.Activity(type=discord.ActivityType.listening, name='First activity'),
-        discord.Activity(type=discord.ActivityType.listening, name='Another activity')
-    ]
-    curr_activity = bot.activity
-    # default to the first activity if not set or invalid
-    if curr_activity not in activities:
-        await bot.change_presence(activity=activities[0])
-        return
-    # use modulo to start from the beginning once the list is exhausted
-    next_activity_index = (activities.index(curr_activity) + 1) % len(activities)
-    await bot.change_presence(activity=activities[next_activity_index])
+    def cog_unload(self):
+        self.status_task.cancel()
 
-@bot.event
-async def on_ready():
-    switch_presence.start()
+    @tasks.loop(minutes=1)
+    async def status_task(self):
+        for status in self.statuses:
+            await self.bot.change_presence(activity=discord.Game(name=status))
+            await asyncio.sleep(60)
+
+    @commands.command(name='startstatus', help='Start updating the bot\'s status every minute')
+    async def start_status(self, ctx):
+        self.status_task.start()
+        await ctx.send('Status updates have started')
+
+    @commands.command(name='stopstatus', help='Stop updating the bot\'s status')
+    async def stop_status(self, ctx):
+        self.status_task.stop()
+        await ctx.send('Status updates have stopped')
+
+def setup(bot):
+    bot.add_cog(StatusCog(bot))
