@@ -16,7 +16,7 @@ class StatusCog(commands.Cog):
         for status in self.statuses:
             await self.bot.change_presence(activity=discord.Game(name=status))
             await asyncio.sleep(60)
-             
+
     @commands.command(name='startstatus', help='Start updating the bot\'s status every minute')
     async def start_status(self, ctx):
         self.status_task.start()
