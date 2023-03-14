@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands, tasks
+import asyncio
 
 class StatusCog(commands.Cog):
     def __init__(self, bot):
@@ -15,7 +16,7 @@ class StatusCog(commands.Cog):
         for status in self.statuses:
             await self.bot.change_presence(activity=discord.Game(name=status))
             await asyncio.sleep(60)
-
+             
     @commands.command(name='startstatus', help='Start updating the bot\'s status every minute')
     async def start_status(self, ctx):
         self.status_task.start()
