@@ -130,7 +130,6 @@ class Suggest(commands.Cog):
             )
             return await ctx.send(embed=embed)
         embed = s_message.embeds[0]
-        title ="🏝️ Approved Suggestion"
         fields = len(embed.fields)
         embed.color = discord.Colour.green()
         if fields > 2:
@@ -139,12 +138,14 @@ class Suggest(commands.Cog):
             embed.insert_field_at(
                 index=2,
                 name="Response",
+                 title ="🏝️ Approved Suggestion",
                 value=message if message else "No response given.",
                 inline=False,
             )
         else:
             embed.add_field(
                 name="Response",
+                 title ="🏝️ Approved Suggestion",
                 value=message if message else "No response given.",
                 inline=False,
             )
