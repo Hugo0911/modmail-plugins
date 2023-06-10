@@ -98,7 +98,7 @@ class Suggest(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMIN)
     async def approve(self, ctx, suggestion_id: int, *, message=None):
         """
-        Approve an suggestion.
+        Approve a suggestion.
 
         **Usage**:
         -approve 5 That's a good idea and will be implemented soon.
@@ -111,7 +111,7 @@ class Suggest(commands.Cog):
             embed = discord.Embed(
                 colour=self.bot.error_color,
                 title=f"Suggestion id #{suggestion_id} not found.",
-                description="Try something else lol.",
+                description="Make sure you are using an existing suggestion number.",
             )
             return await ctx.send(embed=embed)
         s_message = None
@@ -132,20 +132,19 @@ class Suggest(commands.Cog):
         embed = s_message.embeds[0]
         fields = len(embed.fields)
         embed.color = discord.Colour.green()
+        embed.title = "🏝️ Approved Suggestion"
         if fields > 2:
             embed.remove_field(2)
         if fields == 4:
             embed.insert_field_at(
                 index=2,
                 name="Response",
-                 title ="🏝️ Approved Suggestion",
                 value=message if message else "No response given.",
                 inline=False,
             )
         else:
             embed.add_field(
                 name="Response",
-                 title ="🏝️ Approved Suggestion",
                 value=message if message else "No response given.",
                 inline=False,
             )
