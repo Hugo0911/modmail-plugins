@@ -192,9 +192,9 @@ class Suggest(commands.Cog):
             )
             return await ctx.send(embed=embed)
         embed = s_message.embeds[0]
-        title ="🥥 Denied Suggestion"
         fields = len(embed.fields)
         embed.color = discord.Colour.red()
+        embed.title = "🥥 Denied Suggestion"
         if fields > 2:
             embed.remove_field(2)
         if fields == 4:
@@ -316,8 +316,8 @@ class Suggest(commands.Cog):
         Unblock a user from using the suggest command.
 
         **Examples:**
-        [p]suggestmod unblock @RealCyGuy
-        [p]suggestmod unban 543225108135673877
+        [p]suggestmod unblock hugo_#4632
+        [p]suggestmod unban 730128046966964394
         """
         if str(user.id) not in self.banlist:
             embed = discord.Embed(
