@@ -28,7 +28,7 @@ class Suggest(commands.Cog):
 
         if mod is None:
             return
-
+ 
         self.banlist = mod["banlist"]
 
     @commands.command()
