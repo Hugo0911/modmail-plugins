@@ -22,7 +22,7 @@ class Suggest(commands.Cog):
         await self.coll.find_one_and_update(
             {"_id": "mod"}, {"$set": {"banlist": self.banlist}}, upsert=True,
         )
-
+        
     async def _set_mod_val(self):
         mod = await self.coll.find_one({"_id": "mod"})
 
