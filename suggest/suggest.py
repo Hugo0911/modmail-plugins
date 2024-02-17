@@ -30,7 +30,7 @@ class Suggest(commands.Cog):
             return
 
         self.banlist = mod["banlist"]
-
+ 
     @commands.command()
     @commands.cooldown(1, 20, commands.BucketType.member)
     @checks.has_permissions(PermissionLevel.REGULAR)
