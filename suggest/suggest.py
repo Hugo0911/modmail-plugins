@@ -71,7 +71,7 @@ class Suggest(commands.Cog):
                         {"_id": "suggestions"},
                         {
                             "$set": {
-                                "next_id": next_id - 52,
+                                "next_id": next_id + 1,
                                 str(next_id): {"message_id": message.id,},
                             }
                         },
