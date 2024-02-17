@@ -56,7 +56,7 @@ class Suggest(commands.Cog):
                         int(config["suggestion-channel"]["channel"])
                     )
                     suggestions = await self.coll.find_one({"_id": "suggestions"}) or {}
-                    next_id = suggestions.get("next_id", 100)
+                    next_id = suggestions.get("next_id", 1)
                     
                     embed=discord.Embed(title="🌴 Pending Suggestion", description=suggestion, color=self.bot.main_color)
                    
@@ -71,7 +71,7 @@ class Suggest(commands.Cog):
                         {"_id": "suggestions"},
                         {
                             "$set": {
-                                "next_id": next_id + 1,
+                                "next_id": next_id + 100,
                                 str(next_id): {"message_id": message.id,},
                             }
                         },
